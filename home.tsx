@@ -1,45 +1,36 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, Image, StyleSheet, TouchableOpacity, Alert } from 'react-native';
 
-export default function HomeScreen({ navigation }: any) {
+const HomeScreen = ({ navigation }) => {
+  const handlePressAndHold = () => {
+    setTimeout(() => {
+      navigation.navigate('UserList'); // Navega para a tela de listagem
+    }, 2000);
+  };
+
   return (
     <View style={styles.container}>
-      <Text style={styles.title}>Módulo de Usuários</Text>
-      <Image source={{ uri: 'https://via.placeholder.com/150' }} style={styles.logo} />
+      <Text style={styles.logo}>Logo da Empresa</Text>
+      <Text style={styles.module}>Módulo de Usuários</Text>
       <TouchableOpacity
-        onLongPress={() => navigation.navigate('UserList')}
+        onLongPress={handlePressAndHold}
         style={styles.fingerprintContainer}
       >
-        <Image source={{ uri: 'https://via.placeholder.com/100' }} style={styles.fingerprint} />
+        <Image
+          source={{ uri: 'https://via.placeholder.com/150' }} // Imagem de digital
+          style={styles.fingerprint}
+        />
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#f5f5f5',
-  },
-  title: {
-    fontSize: 24,
-    fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  logo: {
-    width: 150,
-    height: 150,
-    marginBottom: 20,
-  },
-  fingerprintContainer: {
-    padding: 20,
-    backgroundColor: '#ddd',
-    borderRadius: 50,
-  },
-  fingerprint: {
-    width: 100,
-    height: 100,
-  },
+  container: { flex: 1, justifyContent: 'center', alignItems: 'center' },
+  logo: { fontSize: 24, fontWeight: 'bold', marginBottom: 16 },
+  module: { fontSize: 18, marginBottom: 32 },
+  fingerprintContainer: { padding: 16, borderRadius: 8 },
+  fingerprint: { width: 150, height: 150 },
 });
+
+export default HomeScreen;
